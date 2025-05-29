@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, ShoppingCart, Eye, Palette } from 'lucide-react';
+import { Star, ShoppingCart, Heart, PaintBucket } from 'lucide-react';
 
 export const FeaturedProducts = () => {
   const colors = [
@@ -11,7 +11,8 @@ export const FeaturedProducts = () => {
       type: "Premium Matt",
       price: "₹899",
       rating: 4.8,
-      popular: true
+      popular: true,
+      description: "Calming blue for peaceful spaces"
     },
     {
       name: "Forest Whisper",
@@ -19,7 +20,8 @@ export const FeaturedProducts = () => {
       type: "Silk Finish",
       price: "₹1,299",
       rating: 4.9,
-      popular: false
+      popular: false,
+      description: "Rich green for natural ambiance"
     },
     {
       name: "Sunrise Glow",
@@ -27,7 +29,8 @@ export const FeaturedProducts = () => {
       type: "Glossy",
       price: "₹1,199",
       rating: 4.7,
-      popular: false
+      popular: false,
+      description: "Warm yellow for bright interiors"
     },
     {
       name: "Midnight Sky",
@@ -35,7 +38,8 @@ export const FeaturedProducts = () => {
       type: "Premium Matt",
       price: "₹899",
       rating: 4.8,
-      popular: true
+      popular: true,
+      description: "Deep charcoal for modern elegance"
     },
     {
       name: "Coral Dream",
@@ -43,7 +47,8 @@ export const FeaturedProducts = () => {
       type: "Silk Finish",
       price: "₹1,099",
       rating: 4.6,
-      popular: false
+      popular: false,
+      description: "Vibrant coral for energetic spaces"
     },
     {
       name: "Pure Serenity",
@@ -51,84 +56,89 @@ export const FeaturedProducts = () => {
       type: "Matt",
       price: "₹799",
       rating: 4.9,
-      popular: true
+      popular: true,
+      description: "Clean white for timeless appeal"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <Palette className="h-8 w-8 text-blue-600 mr-3" />
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Popular Colors
-            </h2>
-          </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover our most loved paint colors, chosen by homeowners and professionals alike
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Featured Paint Colors
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover our premium collection of carefully curated colors, perfect for transforming any space into your dream environment.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-6 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
+        {/* Color Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {colors.map((color, index) => (
-            <Card key={index} className="group cursor-pointer hover:shadow-2xl transition-all duration-500 border-0 bg-white hover:-translate-y-3 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <CardContent className="p-6 relative z-10">
+            <Card key={index} className="group bg-white hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden">
+              <CardContent className="p-0">
+                {/* Header with Popular Badge */}
                 {color.popular && (
-                  <div className="flex justify-center mb-4">
-                    <span className="bg-gradient-to-r from-orange-400 to-red-400 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-lg">
-                      ⭐ Popular
-                    </span>
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-2">
+                    <span className="text-sm font-semibold">✨ Most Popular</span>
                   </div>
                 )}
                 
-                <div className="relative mb-6">
-                  <div 
-                    className="w-full h-32 rounded-xl shadow-lg group-hover:scale-110 transition-all duration-500 border-4 border-white relative overflow-hidden"
-                    style={{ backgroundColor: color.code }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <span className="text-xs font-medium text-gray-700">{color.code}</span>
-                      </div>
-                    </div>
+                {/* Paint Bucket Section */}
+                <div className="p-8 text-center bg-gradient-to-br from-gray-50 to-white">
+                  <div className="relative inline-block mb-6">
+                    <PaintBucket 
+                      size={80} 
+                      style={{ color: color.code }}
+                      className="drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {/* Color dot indicator */}
+                    <div 
+                      className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full border-3 border-white shadow-lg"
+                      style={{ backgroundColor: color.code }}
+                    ></div>
                   </div>
                   
-                  {/* Color reflection effect */}
-                  <div 
-                    className="w-full h-8 rounded-b-xl opacity-20 blur-sm transform scale-y-[-1] mt-1"
-                    style={{ backgroundColor: color.code }}
-                  ></div>
-                </div>
-                
-                <div className="text-center space-y-3">
-                  <h3 className="font-bold text-gray-900 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {color.name}
                   </h3>
-                  <p className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block">
-                    {color.type}
-                  </p>
+                  <p className="text-sm text-gray-500 mb-1">{color.code}</p>
+                  <p className="text-sm text-gray-600 mb-4">{color.description}</p>
                   
-                  <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
-                    <span className="font-bold text-xl text-blue-600">{color.price}</span>
-                    <div className="flex items-center bg-yellow-100 px-2 py-1 rounded-full">
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <span className="text-sm font-medium text-gray-700 ml-1">{color.rating}</span>
+                  {/* Type Badge */}
+                  <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                    {color.type}
+                  </span>
+                </div>
+
+                {/* Details Section */}
+                <div className="p-6 border-t border-gray-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl font-bold text-blue-600">{color.price}</div>
+                    <div className="flex items-center bg-yellow-50 px-2 py-1 rounded-lg">
+                      <Star className="h-4 w-4 text-yellow-500 fill-current mr-1" />
+                      <span className="text-sm font-medium text-gray-700">{color.rating}</span>
                     </div>
                   </div>
 
-                  <div className="flex space-x-2 pt-2">
-                    <Button size="sm" variant="outline" className="flex-1 text-sm h-10 border-2 hover:bg-blue-50 hover:border-blue-300 transition-all duration-300">
-                      <Eye className="h-4 w-4 mr-2" />
-                      View
+                  {/* Action Buttons */}
+                  <div className="flex gap-3">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1 border-gray-300 hover:border-blue-500 hover:text-blue-600"
+                    >
+                      <Heart className="h-4 w-4 mr-2" />
+                      Save
                     </Button>
-                    <Button size="sm" className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm h-10 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Button 
+                      size="sm" 
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                    >
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      Add
+                      Add to Cart
                     </Button>
                   </div>
                 </div>
@@ -137,10 +147,11 @@ export const FeaturedProducts = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105" size="lg">
-            <Palette className="h-5 w-5 mr-2" />
+        {/* View All Button */}
+        <div className="text-center mt-12">
+          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
             View All Colors
+            <ShoppingCart className="h-5 w-5 ml-2" />
           </Button>
         </div>
       </div>
